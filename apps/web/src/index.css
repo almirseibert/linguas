@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* Identidade "Passaporte" (especificação §9) */
+@theme {
+  --color-bg: #f3f5ec;
+  --color-surface: #ffffff;
+  --color-ink: #1c2b20;
+  --color-muted: #5d6b60;
+  --color-line: #dfe4d6;
+  --color-leaf: #2f6f4e;
+  --color-ochre: #c97c1d;
+  --color-danger: #b4432f;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Karla", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #121a15;
+    --color-surface: #1b241c;
+    --color-ink: #e8ede2;
+    --color-muted: #9aa89c;
+    --color-line: #2c3a2e;
+    --color-leaf: #59a97e;
+    --color-ochre: #e3a544;
+    --color-danger: #e0735f;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+}
+
+/* Componentes reutilizáveis (Tailwind v4: @utility pode ser composto e sobrescrito por utilitários) */
+@utility card {
+  @apply rounded-2xl border border-line bg-surface p-4;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 font-bold transition active:scale-[0.98] disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-leaf text-white;
+}
+@utility btn-ghost {
+  @apply btn border border-line bg-surface text-ink;
+}
+@utility input {
+  @apply w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-ink outline-none focus:border-leaf;
+}
+@utility label {
+  @apply mb-1 block text-sm font-bold text-muted;
+}

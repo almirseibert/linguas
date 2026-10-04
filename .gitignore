@@ -1,0 +1,7 @@
+node_modules
+dist
+.env
+*.sqlite
+data/raw
+audio-cache
+dev-dist

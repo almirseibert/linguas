@@ -1,0 +1,26 @@
+{
+  "name": "passaporte-idiomas",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/api & npm run dev -w apps/web",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "migrate": "npm run migrate -w apps/api",
+    "seed": "npm run seed -w apps/api",
+    "import:words": "npm run import:words -w apps/api",
+    "build": "npm run build -w apps/web",
+    "test": "vitest run",
+    "typecheck": "tsc -p apps/api --noEmit && tsc -p apps/web --noEmit",
+    "import:sentences": "npm run import:sentences -w apps/api",
+    "icons": "npm run icons -w apps/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}

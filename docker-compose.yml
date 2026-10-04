@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: passaporte
+      MYSQL_USER: passaporte
+      MYSQL_PASSWORD: passaporte
+      MYSQL_ROOT_PASSWORD: passaporte-root
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 20
+
+  app:
+    build: .
+    env_file: .env
+    environment:
+      DB_CLIENT: mysql
+      DATABASE_URL: mysql://passaporte:passaporte@db:3306/passaporte
+    ports:
+      - "3001:3001"
+    volumes:
+      - app-data:/data # cache dos áudios nativos do Tatoeba
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db-data:
+  app-data:
